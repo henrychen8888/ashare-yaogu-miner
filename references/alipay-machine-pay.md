@@ -64,7 +64,7 @@ Client                    Server                      Alipay
 {
   "protocol": {
     "payment_proof": "7cf8a6a9...",
-    "trade_no": "2026040900828111317760000001xxxx"
+    "trade_no": "20260409********************xxxx"
   },
   "method": {
     "client_session": "xxxx..."
