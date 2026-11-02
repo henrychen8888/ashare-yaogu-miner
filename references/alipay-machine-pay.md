@@ -82,7 +82,7 @@ Client                    Server                      Alipay
     "code": "10000", "msg": "Success",
     "amount": "0.01",
     "out_trade_no": "ORDER_1774598472720_etm5dy",
-    "trade_no": "20260324008281172041220000012182",
+    "trade_no": "20260324********************2182",
     "resource_id": "out_res_id_0000123",
     "active": true
   }
