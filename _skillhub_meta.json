@@ -1,0 +1,71 @@
+{
+  "name": "妖股挖掘量化看板",
+  "display_name": "妖股挖掘量化看板",
+  "display_name_zh": "妖股挖掘量化看板",
+  "display_name_en": "ASHare Monster Stock Miner",
+  "alias": "妖股挖掘",
+  "identifier": "ashare-yaogu-miner",
+  "version": "1.0.1",
+  "author": "莫扎特 ETH",
+  "source": "local",
+  "description_zh": "对当日涨停池做五维加权妖股概率评分并输出深色 HTML 看板。五维权重 = 主力资金净流入 30 + 龙虎榜机构/游资 25 + 量能特征 25 + 题材级别 10 + 均线与K线形态 10，满分 100，分级 ≥80 妖股候选 / 70-79 强关注 / 60-69 潜力区间 / <60 观察。每只票给出五维拆解、命中理由、连板数、主力净流入、龙虎榜次数、换手与所属行业。附带真实自检：涨停算术复核（主板10cm / 创业板科创板20cm / 北交所30cm / ST5cm 分开判）、五维之和与总分比对、HTML 的 None/nan 泄漏扫描、K线与资金流覆盖率核对。零第三方依赖，纯标准库。注意：分数是同池内相对排序，不是次日上涨概率的绝对估计，未经独立收益回测验证。",
+  "description_en": "Score every limit-up stock of the session on a five-factor weighted model (capital inflow 30 / dragon-tiger list 25 / volume profile 25 / theme strength 10 / price pattern 10), output a dependency-free dark HTML dashboard and a structured JSON snapshot. Every candidate carries its dimension breakdown, hit reasons, consecutive-limit count, net main-force inflow, LHB appearances, turnover and sector. Ships with a real self-check: arithmetic limit-up verification (main board 10% / ChiNext+STAR 20% / BSE 30% / ST 5%), dimension-sum consistency, HTML None/nan leak scan, and K-line/flow coverage reconciliation. Zero third-party dependencies. Caveat: scores are within-pool relative rankings, not absolute next-day up-probabilities, and have not been validated by an independent return backtest.",
+  "examples_zh": [
+    "今天有哪些票能成妖",
+    "妖股挖掘看板跑一下",
+    "涨停池里按妖股概率排个序",
+    "今天妖股候选 Top20",
+    "这几只连板股哪只最像妖股",
+    "打板候选给我评个分",
+    "妖股概率 Top10，附五维拆解",
+    "看一下昨天涨停池的妖股评分"
+  ],
+  "examples_en": [
+    "Which limit-up stocks look like monster stocks today",
+    "Run the monster stock mining dashboard",
+    "Rank today's limit-up pool by monster probability",
+    "Top 20 monster candidates for today",
+    "Score these consecutive limit-up names",
+    "Grade my limit-up watchlist",
+    "Show the five-factor breakdown for the top 10",
+    "Score yesterday's limit-up pool"
+  ],
+  "iconSource": "letter:auto",
+  "category": "金融投资",
+  "subcategory": "A股 · 短线打板 / 妖股挖掘",
+  "tags": [
+    "A股",
+    "妖股",
+    "涨停",
+    "连板",
+    "龙虎榜",
+    "资金流",
+    "打板",
+    "短线选股",
+    "量化评分",
+    "看板"
+  ],
+  "audience": "A股短线交易者 / 打板选手 / 需要每日涨停池复盘的技术型量化开发者",
+  "scope_zh": "适用于：当日涨停池内的相对排序与初筛（哪几只最接近妖股早期形态）；五维拆解定位单票短板（是资金不够、还是没上龙虎榜、还是形态没突破）；每日盘后涨停池复盘与情绪温度记录；为自建选股流程提供结构化输入（快照 JSON 含完整五维字段与告警）。不适用于：全市场选股（模型训练域仅为涨停股）；次日上涨概率的绝对估计；盘中实时预警（盘后快照）；单票基本面或估值判断；仓位与买卖建议；替代收益回测（区分度 ≠ 收益率）。",
+  "scope_en": "Best for: within-pool ranking and screening of today's limit-up names; per-stock dimension diagnosis (capital shortage vs no LHB appearance vs no breakout); daily post-close pool review and sentiment logging; structured input for an existing screening pipeline via the snapshot JSON. Not for: whole-market screening (model domain is limit-up stocks only); absolute next-day up-probability; intraday alerting; single-name fundamentals or valuation; position or trade advice; substituting for a return backtest (discrimination is not profitability).",
+  "requirements": "Python 3.9+（仅标准库，零第三方依赖）；需可访问 push2ex / push2his / datacenter-web.eastmoney.com",
+  "entry": "python scripts/run.py  →  ~/WorkBuddy/ashare-yaogu-miner/yaogu_YYYYMMDD.html + .json；python scripts/selfcheck.py 做交付前自检",
+  "boundaries": {
+    "suitable_for": [
+      "当日涨停池内的妖股概率相对排序",
+      "单票五维短板定位与命中理由核对",
+      "盘后复盘与结构化快照归档"
+    ],
+    "not_suitable_for": [
+      "全市场选股或非涨停股的妖股预测",
+      "次日上涨概率的绝对估计与收益承诺",
+      "盘中实时预警、仓位建议、买卖决策"
+    ]
+  },
+  "data_sources": [
+    "东方财富 push2ex 涨停/炸板/跌停池",
+    "东方财富 push2his 个股前复权日线与资金流",
+    "东方财富 datacenter-web 龙虎榜明细"
+  ],
+  "data_disclaimer": "上述数据著作权归东方财富所有，本技能仅作个人学习研究用途。看板为量化研究工具，不构成任何投资建议；妖股炒作高波动、追涨极易亏损。模型输出为同池内相对排序，未经独立收益回测验证。"
+}
